@@ -27,8 +27,8 @@ const PokemonInfo = () => {
 
     return (
         <div className="container">
-            <div className="row justify-content-end pb-md-3">
-                <div className="col-md-1">
+            <div className="row justify-content-end mt-3">
+                <div className="col-3 col-xl-1">
                     <button className="btn btn-outline-warning" type="button"
                             onClick={() => routeChange()}>Back
                     </button>
@@ -41,17 +41,17 @@ const PokemonInfo = () => {
                     <div className="card bg-transparent border-white m-3">
                         <h2 className="text-center text-white text-uppercase m-4">{pokemon.name}</h2>
                         <div className="row">
-                            <div className="col-md-8">
+                            <div className="col-md-12 col-xl-8">
                                 <div className="row justify-content-center">
                                     <img src={pokemon.sprites.other.dream_world.front_default} className="img-fluid"
                                          style={{width: '20rem', height: '20rem'}} alt={pokemon.name}/>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-12 col-xl-4">
                                 {
                                     pokemon.stats.map(poke => {
                                         return (
-                                            <h5 className="col-md-8">
+                                            <h5 className="offset-2 col-8 offset-xl-0 col-xl-8">
                                                 {poke.stat.name}:
                                                 <span
                                                     className="badge rounded-pill text-bg-primary float-end"> {poke.base_stat}</span>
@@ -59,17 +59,17 @@ const PokemonInfo = () => {
                                         )
                                     })
                                 }
-                                <h5 className="col-md-8">
+                                <h5 className="offset-2 col-8 offset-xl-0 col-xl-8">
                                     base-experience:
                                     <span
                                         className="badge rounded-pill text-bg-primary float-end"> {pokemon.base_experience}</span>
                                 </h5>
-                                <h5 className="col-md-8">
+                                <h5 className="offset-2 col-8 offset-xl-0 col-xl-8">
                                     height:
                                     <span
                                         className="badge rounded-pill text-bg-primary float-end"> {pokemon.height}</span>
                                 </h5>
-                                <h5 className="col-md-8">
+                                <h5 className="offset-2 col-8 offset-xl-0 col-xl-8">
                                     weight:
                                     <span
                                         className="badge rounded-pill text-bg-primary float-end"> {pokemon.weight}</span>
@@ -77,8 +77,8 @@ const PokemonInfo = () => {
                             </div>
                         </div>
 
-                        <div className="row justify-content-end mb-4">
-                            <div className="col-md-2">
+                        <div className="row justify-content-lg-end justify-content-center m-3">
+                            <div className="col-md-2 col-4">
                                 <h5>Abilities:</h5>
                                 {
                                     pokemon.abilities.map(poke => {
@@ -91,7 +91,7 @@ const PokemonInfo = () => {
                                     })
                                 }
                             </div>
-                            <div className="col-md-2">
+                            <div className="col-md-2 col-4">
                                 <h5>Type:</h5>
                                 {
                                     pokemon.types.map(poke => {

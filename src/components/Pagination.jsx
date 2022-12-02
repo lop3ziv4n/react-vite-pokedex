@@ -3,9 +3,9 @@ import React from "react";
 const Pagination = (props) => {
     const {prevUrl, nextUrl, setPokeData, setUrl, page, setPage, totalPages} = props;
     return (
-        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div className="d-grid gap-2 d-flex justify-content-end mt-3">
             {
-                prevUrl && <button className="btn btn-outline-warning me-md-2" type="button"
+                prevUrl && <button className="btn btn-outline-warning me-2" type="button"
                                    onClick={() => {
                                        setPokeData([])
                                        setUrl(prevUrl)
@@ -13,7 +13,7 @@ const Pagination = (props) => {
                                    }}>Previous</button>
             }
             {
-                page && <button type="button" className="btn btn-dark position-relative me-md-2">
+                page && <button type="button" className="btn btn-dark position-relative me-2">
                     {page}
                     <span
                         className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{totalPages} </span>

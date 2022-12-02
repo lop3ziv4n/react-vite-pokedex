@@ -48,7 +48,7 @@ const PokemonList = () => {
                     <div className="row">
                         {
                             pokeData.map((item) => (
-                                <div className="col-md-4 p-3" key={item.id}>
+                                <div className="col-lg-4 col-md-6 p-3" key={item.id}>
                                     <PokemonCard key={item.id} pokemon={item}/>
                                 </div>
                             ))
