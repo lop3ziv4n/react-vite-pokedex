@@ -1,28 +1,9 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 
-import PokemonCard from "./PokemonCard";
-
-const NavPage = ({prevUrl, nextUrl, setPokeData, setUrl}) => {
-    return (
-        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-            {
-                prevUrl && <button className="btn btn-outline-warning me-md-2" type="button"
-                                   onClick={() => {
-                                       setPokeData([])
-                                       setUrl(prevUrl)
-                                   }}>Previous</button>
-            }
-            {
-                nextUrl && <button className="btn btn-outline-danger" type="button"
-                                   onClick={() => {
-                                       setPokeData([])
-                                       setUrl(nextUrl)
-                                   }}>Next</button>
-            }
-        </div>
-    );
-}
+import PokemonCard from "../components/PokemonCard";
+import Pagination from "../components/Pagination";
+import Loading from "../components/Loading";
 
 const PokemonList = () => {
     const [pokeData, setPokeData] = useState([]);
@@ -30,13 +11,16 @@ const PokemonList = () => {
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/")
     const [nextUrl, setNextUrl] = useState();
     const [prevUrl, setPrevUrl] = useState();
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
 
-    const pokeFun = async () => {
+    const fetchPokemons = async () => {
         setLoading(true)
         const res = await axios.get(url);
         setNextUrl(res.data.next);
         setPrevUrl(res.data.previous);
         getPokemon(res.data.results)
+        setTotal(Math.ceil(res.data.count / 20));
         setLoading(false)
     }
     const getPokemon = async (res) => {
@@ -50,15 +34,16 @@ const PokemonList = () => {
         })
     }
     useEffect(() => {
-        pokeFun();
+        fetchPokemons();
     }, [url])
 
     return (
-        <div className="container">
-            <NavPage prevUrl={prevUrl} nextUrl={nextUrl} setPokeData={setPokeData} setUrl={setUrl}/>
+        <div className="container h-auto">
+            <Pagination prevUrl={prevUrl} nextUrl={nextUrl} setPokeData={setPokeData} setUrl={setUrl}
+                        page={page} setPage={setPage} totalPages={total}/>
             {
                 loading ?
-                    <h1>Loading...</h1>
+                    <Loading/>
                     :
                     <div className="row">
                         {
@@ -70,7 +55,7 @@ const PokemonList = () => {
                         }
                     </div>
             }
-            <NavPage prevUrl={prevUrl} nextUrl={nextUrl} setPokeData={setPokeData} setUrl={setUrl}/>
+            <Pagination prevUrl={prevUrl} nextUrl={nextUrl} setPokeData={setPokeData} setUrl={setUrl}/>
         </div>
     );
 }

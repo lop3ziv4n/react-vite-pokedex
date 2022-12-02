@@ -9,14 +9,16 @@ const PokemonCard = ({pokemon}) => {
     }
 
     return (
-        <div className="card" style={{cursor: 'pointer'}} onClick={() => routeChange(pokemon.id)}>
+        <div className="card bg-transparent border-white" style={{cursor: 'pointer'}}
+             onClick={() => routeChange(pokemon.id)}>
             <div className="row">
                 <div className="col-md-4">
-                    <img src={pokemon.sprites.front_default} className="img-fluid rounded-circle" alt={pokemon.name}/>
+                    <img src={pokemon.sprites.front_default} className="img-fluid rounded-circle"
+                         style={{width: '25rem'}} alt={pokemon.name}/>
                 </div>
                 <div className="col-md-8 d-flex align-self-center">
                     <div className="card-body">
-                        <h3 className="card-title text-black-50 text-uppercase">{pokemon.name}</h3>
+                        <h3 className="card-title text-white text-uppercase">{pokemon.name}</h3>
                     </div>
                 </div>
             </div>
@@ -25,3 +27,5 @@ const PokemonCard = ({pokemon}) => {
 }
 
 export default PokemonCard;
+
+
